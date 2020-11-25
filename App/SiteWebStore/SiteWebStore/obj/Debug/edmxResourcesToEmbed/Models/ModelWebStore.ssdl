@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbStoreWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbBrands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbCities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="IdRegion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbCountries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbCustomers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DocumentNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Adress" Type="varchar" MaxLength="100" />
+    <Property Name="CellPhone" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varbinary" MaxLength="100" Nullable="false" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+    <Property Name="IdGender" Type="int" Nullable="false" />
+    <Property Name="IdCity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbDocuments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbEmployees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DocumentNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="CellPhone" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="20" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+    <Property Name="IdGender" Type="int" Nullable="false" />
+    <Property Name="IdCity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbGenders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecipientAdress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="SentDate" Type="datetime" />
+    <Property Name="DeliveryDate" Type="datetime" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="50" />
+    <Property Name="District" Type="varchar" MaxLength="50" />
+    <Property Name="SpecialInstruction" Type="varchar" MaxLength="200" />
+    <Property Name="IdStateOrder" Type="int" Nullable="false" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="IdCity" Type="int" Nullable="false" />
+    <Property Name="IdShippingCompany" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbPositions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbProductOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+    <Property Name="IdOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="Stock" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="int" Nullable="false" />
+    <Property Name="InternalPrice" Type="money" Nullable="false" />
+    <Property Name="PublicPrice" Type="money" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="ProductDetail" Type="varchar" MaxLength="200" />
+    <Property Name="IdBrand" Type="int" Nullable="false" />
+    <Property Name="IdProvider" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbProviders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbRegions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="IdCountry" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbShippingCompanies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbStateOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbSubCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+    <Property Name="IdCategory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbSubCategoryProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+    <Property Name="IdSubCategory" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbCities_tbRegions">
+    <End Role="tbRegions" Type="Self.tbRegions" Multiplicity="1" />
+    <End Role="tbCities" Type="Self.tbCities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbRegions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbCities">
+        <PropertyRef Name="IdRegion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbCustomers_tbCities">
+    <End Role="tbCities" Type="Self.tbCities" Multiplicity="1" />
+    <End Role="tbCustomers" Type="Self.tbCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbCustomers">
+        <PropertyRef Name="IdCity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbCustomers_tbDocuments">
+    <End Role="tbDocuments" Type="Self.tbDocuments" Multiplicity="1" />
+    <End Role="tbCustomers" Type="Self.tbCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDocuments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbCustomers">
+        <PropertyRef Name="IdDocument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbCustomers_tbGenders">
+    <End Role="tbGenders" Type="Self.tbGenders" Multiplicity="1" />
+    <End Role="tbCustomers" Type="Self.tbCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbGenders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbCustomers">
+        <PropertyRef Name="IdGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbEmployees_tbCities">
+    <End Role="tbCities" Type="Self.tbCities" Multiplicity="1" />
+    <End Role="tbEmployees" Type="Self.tbEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbEmployees">
+        <PropertyRef Name="IdCity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbEmployees_tbDocuments">
+    <End Role="tbDocuments" Type="Self.tbDocuments" Multiplicity="1" />
+    <End Role="tbEmployees" Type="Self.tbEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDocuments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbEmployees">
+        <PropertyRef Name="IdDocument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbEmployees_tbGenders">
+    <End Role="tbGenders" Type="Self.tbGenders" Multiplicity="1" />
+    <End Role="tbEmployees" Type="Self.tbEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbGenders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbEmployees">
+        <PropertyRef Name="IdGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOrders_tbCities">
+    <End Role="tbCities" Type="Self.tbCities" Multiplicity="1" />
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbOrders">
+        <PropertyRef Name="IdCity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOrders_tbCustomers">
+    <End Role="tbCustomers" Type="Self.tbCustomers" Multiplicity="1" />
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCustomers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbOrders">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOrders_tbEmployees">
+    <End Role="tbEmployees" Type="Self.tbEmployees" Multiplicity="1" />
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbEmployees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbOrders">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOrders_tbShippingCompanies">
+    <End Role="tbShippingCompanies" Type="Self.tbShippingCompanies" Multiplicity="1" />
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbShippingCompanies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbOrders">
+        <PropertyRef Name="IdShippingCompany" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOrders_tbStateOrders">
+    <End Role="tbStateOrders" Type="Self.tbStateOrders" Multiplicity="1" />
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStateOrders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbOrders">
+        <PropertyRef Name="IdStateOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProductOrders_tbOrders">
+    <End Role="tbOrders" Type="Self.tbOrders" Multiplicity="1" />
+    <End Role="tbProductOrders" Type="Self.tbProductOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbOrders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbProductOrders">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProductOrders_tbProducts">
+    <End Role="tbProducts" Type="Self.tbProducts" Multiplicity="1" />
+    <End Role="tbProductOrders" Type="Self.tbProductOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbProductOrders">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProducts_tbBrands">
+    <End Role="tbBrands" Type="Self.tbBrands" Multiplicity="1" />
+    <End Role="tbProducts" Type="Self.tbProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBrands">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbProducts">
+        <PropertyRef Name="IdBrand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProducts_tbProviders">
+    <End Role="tbProviders" Type="Self.tbProviders" Multiplicity="1" />
+    <End Role="tbProducts" Type="Self.tbProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProviders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbProducts">
+        <PropertyRef Name="IdProvider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbRegions_tbCountries">
+    <End Role="tbCountries" Type="Self.tbCountries" Multiplicity="1" />
+    <End Role="tbRegions" Type="Self.tbRegions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCountries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbRegions">
+        <PropertyRef Name="IdCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbSubCategories_tbCategories">
+    <End Role="tbCategories" Type="Self.tbCategories" Multiplicity="1" />
+    <End Role="tbSubCategories" Type="Self.tbSubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbSubCategories">
+        <PropertyRef Name="IdCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbSubCategoryProducts_tbProducts">
+    <End Role="tbProducts" Type="Self.tbProducts" Multiplicity="1" />
+    <End Role="tbSubCategoryProducts" Type="Self.tbSubCategoryProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbSubCategoryProducts">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbSubCategoryProducts_tbSubCategories">
+    <End Role="tbSubCategories" Type="Self.tbSubCategories" Multiplicity="1" />
+    <End Role="tbSubCategoryProducts" Type="Self.tbSubCategoryProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSubCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbSubCategoryProducts">
+        <PropertyRef Name="IdSubCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbStoreWebModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbBrands" EntityType="Self.tbBrands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCategories" EntityType="Self.tbCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCities" EntityType="Self.tbCities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCountries" EntityType="Self.tbCountries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCustomers" EntityType="Self.tbCustomers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbDocuments" EntityType="Self.tbDocuments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbEmployees" EntityType="Self.tbEmployees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbGenders" EntityType="Self.tbGenders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbOrders" EntityType="Self.tbOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbPositions" EntityType="Self.tbPositions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbProductOrders" EntityType="Self.tbProductOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbProducts" EntityType="Self.tbProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbProviders" EntityType="Self.tbProviders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbRegions" EntityType="Self.tbRegions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbShippingCompanies" EntityType="Self.tbShippingCompanies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbStateOrders" EntityType="Self.tbStateOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbSubCategories" EntityType="Self.tbSubCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbSubCategoryProducts" EntityType="Self.tbSubCategoryProducts" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbCities_tbRegions" Association="Self.FK_tbCities_tbRegions">
+      <End Role="tbRegions" EntitySet="tbRegions" />
+      <End Role="tbCities" EntitySet="tbCities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbCustomers_tbCities" Association="Self.FK_tbCustomers_tbCities">
+      <End Role="tbCities" EntitySet="tbCities" />
+      <End Role="tbCustomers" EntitySet="tbCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbCustomers_tbDocuments" Association="Self.FK_tbCustomers_tbDocuments">
+      <End Role="tbDocuments" EntitySet="tbDocuments" />
+      <End Role="tbCustomers" EntitySet="tbCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbCustomers_tbGenders" Association="Self.FK_tbCustomers_tbGenders">
+      <End Role="tbGenders" EntitySet="tbGenders" />
+      <End Role="tbCustomers" EntitySet="tbCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbEmployees_tbCities" Association="Self.FK_tbEmployees_tbCities">
+      <End Role="tbCities" EntitySet="tbCities" />
+      <End Role="tbEmployees" EntitySet="tbEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbEmployees_tbDocuments" Association="Self.FK_tbEmployees_tbDocuments">
+      <End Role="tbDocuments" EntitySet="tbDocuments" />
+      <End Role="tbEmployees" EntitySet="tbEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbEmployees_tbGenders" Association="Self.FK_tbEmployees_tbGenders">
+      <End Role="tbGenders" EntitySet="tbGenders" />
+      <End Role="tbEmployees" EntitySet="tbEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOrders_tbCities" Association="Self.FK_tbOrders_tbCities">
+      <End Role="tbCities" EntitySet="tbCities" />
+      <End Role="tbOrders" EntitySet="tbOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOrders_tbCustomers" Association="Self.FK_tbOrders_tbCustomers">
+      <End Role="tbCustomers" EntitySet="tbCustomers" />
+      <End Role="tbOrders" EntitySet="tbOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOrders_tbEmployees" Association="Self.FK_tbOrders_tbEmployees">
+      <End Role="tbEmployees" EntitySet="tbEmployees" />
+      <End Role="tbOrders" EntitySet="tbOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOrders_tbShippingCompanies" Association="Self.FK_tbOrders_tbShippingCompanies">
+      <End Role="tbShippingCompanies" EntitySet="tbShippingCompanies" />
+      <End Role="tbOrders" EntitySet="tbOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOrders_tbStateOrders" Association="Self.FK_tbOrders_tbStateOrders">
+      <End Role="tbStateOrders" EntitySet="tbStateOrders" />
+      <End Role="tbOrders" EntitySet="tbOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProductOrders_tbOrders" Association="Self.FK_tbProductOrders_tbOrders">
+      <End Role="tbOrders" EntitySet="tbOrders" />
+      <End Role="tbProductOrders" EntitySet="tbProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProductOrders_tbProducts" Association="Self.FK_tbProductOrders_tbProducts">
+      <End Role="tbProducts" EntitySet="tbProducts" />
+      <End Role="tbProductOrders" EntitySet="tbProductOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProducts_tbBrands" Association="Self.FK_tbProducts_tbBrands">
+      <End Role="tbBrands" EntitySet="tbBrands" />
+      <End Role="tbProducts" EntitySet="tbProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProducts_tbProviders" Association="Self.FK_tbProducts_tbProviders">
+      <End Role="tbProviders" EntitySet="tbProviders" />
+      <End Role="tbProducts" EntitySet="tbProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbRegions_tbCountries" Association="Self.FK_tbRegions_tbCountries">
+      <End Role="tbCountries" EntitySet="tbCountries" />
+      <End Role="tbRegions" EntitySet="tbRegions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbSubCategories_tbCategories" Association="Self.FK_tbSubCategories_tbCategories">
+      <End Role="tbCategories" EntitySet="tbCategories" />
+      <End Role="tbSubCategories" EntitySet="tbSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbSubCategoryProducts_tbProducts" Association="Self.FK_tbSubCategoryProducts_tbProducts">
+      <End Role="tbProducts" EntitySet="tbProducts" />
+      <End Role="tbSubCategoryProducts" EntitySet="tbSubCategoryProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbSubCategoryProducts_tbSubCategories" Association="Self.FK_tbSubCategoryProducts_tbSubCategories">
+      <End Role="tbSubCategories" EntitySet="tbSubCategories" />
+      <End Role="tbSubCategoryProducts" EntitySet="tbSubCategoryProducts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

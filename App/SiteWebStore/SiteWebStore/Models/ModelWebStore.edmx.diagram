@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="93902d8a75794291b624025d3dece9ed" Name="Diagram1">
+        <EntityTypeShape EntityType="dbStoreWebModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbBrand" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbCategory" Width="1.5" PointX="6" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbCity" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbCountry" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbCustomer" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbDocument" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbEmployee" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbGender" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbOrder" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbPosition" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbProductOrder" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbProduct" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbProvider" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbRegion" Width="1.5" PointX="1.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbShippingCompany" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbStateOrder" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbSubCategory" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStoreWebModel.tbSubCategoryProduct" Width="1.5" PointX="10.5" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbProducts_tbBrands" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbSubCategories_tbCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbCities_tbRegions" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbCustomers_tbCities" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbEmployees_tbCities" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbOrders_tbCities" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbRegions_tbCountries" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbCustomers_tbDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbCustomers_tbGenders" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbOrders_tbCustomers" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbEmployees_tbDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbEmployees_tbGenders" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbOrders_tbEmployees" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbOrders_tbShippingCompanies" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbOrders_tbStateOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbProductOrders_tbOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbProductOrders_tbProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbProducts_tbProviders" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbSubCategoryProducts_tbProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStoreWebModel.FK_tbSubCategoryProducts_tbSubCategories" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
