@@ -14,6 +14,5 @@ namespace SiteWebStore.Models
         [Display(Name = "Discount")]
         public string DiscountProduct { get; set; }
 
-        public int IdCategory { get; set; }
     }
 }

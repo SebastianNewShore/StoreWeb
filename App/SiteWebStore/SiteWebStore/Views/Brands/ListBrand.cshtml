@@ -1,0 +1,9 @@
+﻿@model IEnumerable<SiteWebStore.Models.tbBrand>
+<select class="form-control" id="IdBrand" name="IdBrand">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+
+

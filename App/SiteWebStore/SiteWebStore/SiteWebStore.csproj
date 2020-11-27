@@ -198,11 +198,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\RestrictionConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProvidersController.cs" />
+    <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -366,6 +370,11 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Products\ListProducts.cshtml" />
     <Content Include="Views\Products\ProductDetails.cshtml" />
+    <Content Include="Views\Products\CreateProduct.cshtml" />
+    <Content Include="Views\Brands\ListBrand.cshtml" />
+    <Content Include="Views\Providers\ListProvider.cshtml" />
+    <Content Include="Views\Categories\ListCategories.cshtml" />
+    <Content Include="Views\SubCategories\ListSubCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

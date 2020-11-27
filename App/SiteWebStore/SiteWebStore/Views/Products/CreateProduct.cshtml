@@ -1,0 +1,140 @@
+﻿@model SiteWebStore.Models.tbProduct
+
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Product</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        <div class="col-md-6">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Code</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Name</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Product State</label>
+                <div class="col-md-12">
+                    <select class="form-control" id="State" name="State">
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Stock</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Discount Applied</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Internal Price</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.InternalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InternalPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Public Price</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.PublicPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PublicPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Brand</label>
+                <div class="col-md-12">
+                    @Html.Action("ListBrand", "Brands")
+                    @Html.ValidationMessageFor(model => model.IdBrand, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Provider</label>
+                <div class="col-md-12">
+                    @Html.Action("ListProvider", "Providers")
+                    @Html.ValidationMessageFor(model => model.IdProvider, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Description</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control rounded-0" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Detail</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.ProductDetail, new { htmlAttributes = new { @class = "form-control rounded-0" } })
+                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Categories</label>
+                <div class="col-md-12">
+                   @Html.Action("ListCategories", "Categories")
+                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Sub Categories</label>
+                <div class="col-md-12">
+                    @Html.Action("ListSubCategories", "SubCategories")
+                    @Html.
+                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <center>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </center>
+        </div>
+        
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ListProducts")
+    <script>
+        $("#idCategory").val("@Model.Id)
+    </script>
+</div>

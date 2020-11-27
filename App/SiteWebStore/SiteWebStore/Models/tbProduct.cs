@@ -23,20 +23,23 @@ namespace SiteWebStore.Models
         }
     
         public int Id { get; set; }
+        [Required]
         public string Code { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public byte State { get; set; }
+        [Required]
         public int Stock { get; set; }
+        [Required]
         public int Discount { get; set; }
-
-        [Display(Name = "Internal Price")]
+        [Required]
         public decimal InternalPrice { get; set; }
-
-        [Display(Name = "Public Price")]
+        [Required]
         public decimal PublicPrice { get; set; }
+        [Required]
         public string Description { get; set; }
-
-        [Display(Name = "Product Detail")]
+        [Required]
         public string ProductDetail { get; set; }
         public int IdBrand { get; set; }
         public int IdProvider { get; set; }
