@@ -11,7 +11,8 @@ namespace SiteWebStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tbProduct
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,9 +28,15 @@ namespace SiteWebStore.Models
         public byte State { get; set; }
         public int Stock { get; set; }
         public int Discount { get; set; }
+
+        [Display(Name = "Internal Price")]
         public decimal InternalPrice { get; set; }
+
+        [Display(Name = "Public Price")]
         public decimal PublicPrice { get; set; }
         public string Description { get; set; }
+
+        [Display(Name = "Product Detail")]
         public string ProductDetail { get; set; }
         public int IdBrand { get; set; }
         public int IdProvider { get; set; }
