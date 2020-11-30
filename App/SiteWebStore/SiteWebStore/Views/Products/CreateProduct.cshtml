@@ -114,9 +114,10 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4">Sub Categories</label>
-                <div class="col-md-12">
-                    @Html.Action("ListSubCategories", "SubCategories")
-                    @Html.
+                <div id="prueba" class="col-md-12">
+                    <select class="form-control" id="IdCategory" name="IdCategory">
+                    </select>
+
                     @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -134,7 +135,4 @@
 
 <div>
     @Html.ActionLink("Back to List", "ListProducts")
-    <script>
-        $("#idCategory").val("@Model.Id)
-    </script>
 </div>

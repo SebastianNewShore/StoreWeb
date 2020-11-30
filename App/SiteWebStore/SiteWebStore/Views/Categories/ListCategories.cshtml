@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<SiteWebStore.Models.tbCategory>
-<select class="form-control" id="Id" name="Id">
+<select class="form-control" id="Id" name="Id" onchange="CategorySelected();">
     @foreach (var item in Model)
     {
         <option value="@item.Id">@item.Name</option>

@@ -98,3 +98,4 @@ C:\Users\sebastian.castano\Desktop\StoreWeb\StoreWeb\App\SiteWebStore\SiteWebSto
 C:\Users\sebastian.castano\Desktop\StoreWeb\StoreWeb\App\SiteWebStore\SiteWebStore\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\sebastian.castano\Desktop\StoreWeb\StoreWeb\App\SiteWebStore\SiteWebStore\obj\Debug\SiteWebStore.dll
 C:\Users\sebastian.castano\Desktop\StoreWeb\StoreWeb\App\SiteWebStore\SiteWebStore\obj\Debug\SiteWebStore.pdb
+C:\Users\sebastian.castano\Desktop\StoreWeb\StoreWeb\App\SiteWebStore\SiteWebStore\obj\Debug\SiteWebStore.csprojResolveAssemblyReference.cache
