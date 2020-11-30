@@ -30,5 +30,13 @@ namespace SiteWebStore.Controllers
                 return PartialView(brands);
             }
         }
+
+        public static string BrandName(int idBrand)
+        {
+            using (dbStoreWebEntities db = new dbStoreWebEntities())
+            {
+                return db.tbBrands.Find(idBrand).Name;
+            }
+        }  
     }
 }

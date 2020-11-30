@@ -28,5 +28,13 @@ namespace SiteWebStore.Controllers
                 return PartialView(providers);
             }
         }
+
+        public static string ProviderName(int idProvider)
+        {
+            using (dbStoreWebEntities db = new dbStoreWebEntities())
+            {
+                return db.tbProviders.Find(idProvider).Name;
+            }
+        }
     }
 }

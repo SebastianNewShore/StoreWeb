@@ -8,12 +8,6 @@ namespace SiteWebStore.Models
 {
     public class ProductModel : tbProduct
     {
-        public string Brand { get; set; }
-        public string Provider { get; set; }
-
-        [Display(Name = "Discount")]
-        public string DiscountProduct { get; set; }
-
         public string Categories { get; set; }
 
     }

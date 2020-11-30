@@ -13,5 +13,7 @@ namespace SiteWebStore.Constants
         public const string DataBase = "Database";
         public const string Memory = "Memory";
         public const string ProductExist = "the product to be entered already exists";
+        public const string SelectedCategory = "select the associated categories";
+        public const string ProductCookie = "ProductCookie";
     }
 }

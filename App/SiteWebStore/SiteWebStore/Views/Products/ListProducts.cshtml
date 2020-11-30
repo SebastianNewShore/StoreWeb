@@ -22,7 +22,7 @@
             Stock
         </th>
         <th>
-            DiscountProduct
+            Discount <strong><b>(%)</b></strong>
         </th>
         <th>
             Internal Price
@@ -35,6 +35,12 @@
         </th>
         <th>
             Provider
+        </th>
+        <th>
+           Unit Revenue
+        </th>
+        <th>
+            Total Revenue
         </th>
         <th></th>
     </tr>
@@ -60,10 +66,16 @@
             @Html.DisplayFor(modelItem => item.PublicPrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdBrand)
+            @SiteWebStore.Controllers.BrandsController.BrandName(item.IdBrand)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdProvider)
+            @SiteWebStore.Controllers.ProvidersController.ProviderName(item.IdProvider)
+        </td>
+        <td>
+            @SiteWebStore.Controllers.ProductsController.UnitRevenue(item.PublicPrice, item.InternalPrice, item.Discount)
+        </td>
+        <td>
+            @SiteWebStore.Controllers.ProductsController.TotalRevenue(item.PublicPrice, item.InternalPrice, item.Discount, item.Stock)
         </td>
         <td>
             @Html.ActionLink("Product Details", "ProductDetails", new { id=item.Id })

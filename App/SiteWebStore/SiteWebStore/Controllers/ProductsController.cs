@@ -11,25 +11,25 @@ namespace SiteWebStore.Controllers
 {
     public class ProductsController : Controller
     {
-        private static List<tbProduct> productMemory = new List<tbProduct>();
-        private static List<tbSubCategoryProduct> listCategories = new List<tbSubCategoryProduct>();
-
+        GenericMethods GenericMethods = new GenericMethods();
         public ActionResult ListProducts()
         {
+            var products = new List<tbProduct>();
+
             using (dbStoreWebEntities db = new dbStoreWebEntities())
-            {
-                var products = new List<tbProduct>();
+            {        
                 try
                 {
                     products = (from p in db.tbProducts 
                                 where p.State == 1
                                 select p).ToList();
 
-                    foreach(var product in productMemory)
+                    foreach (var product in ProductsMemory())
                     {
-                       if(product.State.Equals(1) && products.Any(x => x.Code == product.Code))
-                        products.Add(product);
+                        if (product.State.Equals(1))
+                            products.Add(product);
                     }
+                   
                 }
                 catch (Exception ex)
                 {
@@ -65,12 +65,9 @@ namespace SiteWebStore.Controllers
                                                    }).ToList()
                                        }).ToList();
 
-
-
                     detail = JsonConvert.DeserializeObject<DetailModel>(information.Select(x => x.ProductDetail).ToList().FirstOrDefault());
                     detail.Description = information.Select(x => x.Description).ToList().FirstOrDefault();
                     detail.categories = string.Join(", ", from e in information from x in e.Name select x.Name);
-
                 }
                 catch (Exception ex)
                 {
@@ -92,13 +89,16 @@ namespace SiteWebStore.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
+   
+            var products = new List<tbProduct>();
 
             try
             {
                 using (dbStoreWebEntities db = new dbStoreWebEntities())
                 {
-                    if (db.tbProducts.Any(x => x.Code != p.Code) && productMemory.Any(x => x.Code == p.Code)) {
+                    if (!db.tbProducts.Any(x => x.Code == p.Code) && !ProductsMemory().Any(x => x.Code == p.Code) && !string.IsNullOrEmpty(p.Categories)) {
                         var product = new tbProduct();
+                        var Categories = new List<tbSubCategoryProduct>();
 
                         product.Code = p.Code;
                         product.Name = p.Name;
@@ -112,25 +112,30 @@ namespace SiteWebStore.Controllers
                         product.Description = p.Description;
                         product.ProductDetail = RestrictionConstants.JsonMockup;
 
-                        productMemory.Add(product);
-
                         foreach (var category in p.Categories.Split(','))
                         {
-                            listCategories.Add(new tbSubCategoryProduct {
+                            Categories.Add(new tbSubCategoryProduct {
                                 tbProduct = product,
                                 IdSubCategory = int.Parse(category)
                             });
                         }
 
                         if (this.Request.Form[RestrictionConstants.SaveMode] == RestrictionConstants.DataBase)
-                            SaveDatabase(product, listCategories);
-                        //else if(this.Request.Form[RestrictionConstants.SaveMode] == RestrictionConstants.Memory)
-                        //    SaveMemory(product, listCategories);
+                            SaveDatabase(product, Categories);
+                        else
+                        {
+                            var productsMemory = ProductsMemory();
+                            productsMemory.Add(product);
+                            GenericMethods.CreateCookie(JsonConvert.SerializeObject(productsMemory), RestrictionConstants.ProductCookie);
+                        }
 
-                        return RedirectToAction("ListProducts");
+                            return RedirectToAction("ListProducts");                        
                     }
                     else
                     {
+                        if(string.IsNullOrEmpty(p.Categories))
+                        ModelState.AddModelError("", RestrictionConstants.SelectedCategory);
+                        else
                         ModelState.AddModelError("", RestrictionConstants.ProductExist);
                     }
                 }
@@ -139,9 +144,7 @@ namespace SiteWebStore.Controllers
             {
                 ModelState.AddModelError("", RestrictionConstants.Error + ex.Message);
             }
-
             return View();
-
         }
 
         private void SaveDatabase(tbProduct product, List<tbSubCategoryProduct> listCategories)
@@ -164,20 +167,23 @@ namespace SiteWebStore.Controllers
             }
         }
 
-        //private void SaveMemory(tbProduct product, List<tbSubCategoryProduct> listCategories)
-        //{
-        //    productMemory.Add(new ProductModel {
-        //    Code = product.Code,
-        //    Name = product.Name,
-        //    State = product.State,
-        //    Stock = product.Stock,
-        //    Discount = product.Discount,
-        //    InternalPrice = product.InternalPrice,
-        //    PublicPrice = product.PublicPrice,
-        //    IdBrand = product.IdBrand,
-        //    IdProvider = product.IdProvider
-        //});
+        public List<tbProduct> ProductsMemory()
+        {
+            if (GenericMethods.GetCookie(RestrictionConstants.ProductCookie) != null)
+            {
+                return JsonConvert.DeserializeObject<List<tbProduct>>(GenericMethods.GetCookie(RestrictionConstants.ProductCookie).Value);
+            } 
+            return new List<tbProduct>();
+        }
 
-        //}
+        public static string UnitRevenue(decimal publicPrice, decimal internalPrice, int discount)
+        {
+            return string.Format("{0:C0}",(((publicPrice * discount) / 100)  + publicPrice) - internalPrice); 
+        }
+
+        public static string TotalRevenue(decimal publicPrice, decimal internalPrice, int discount, int stock)
+        {
+            return string.Format("{0:C0}", ((((publicPrice * discount) / 100) + publicPrice) - internalPrice) * stock);
+        }
     }
 }
