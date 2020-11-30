@@ -42,7 +42,6 @@ namespace SiteWebStore.Models
         public virtual DbSet<tbRegion> tbRegions { get; set; }
         public virtual DbSet<tbShippingCompany> tbShippingCompanies { get; set; }
         public virtual DbSet<tbStateOrder> tbStateOrders { get; set; }
-        public virtual DbSet<tbSubCategory> tbSubCategories { get; set; }
         public virtual DbSet<tbSubCategoryProduct> tbSubCategoryProducts { get; set; }
     }
 }

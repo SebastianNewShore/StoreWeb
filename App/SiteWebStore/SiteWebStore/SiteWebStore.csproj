@@ -206,7 +206,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
-    <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,9 +278,6 @@
       <DependentUpon>ModelWebStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbStateOrder.cs">
-      <DependentUpon>ModelWebStore.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tbSubCategory.cs">
       <DependentUpon>ModelWebStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbSubCategoryProduct.cs">
@@ -374,7 +370,6 @@
     <Content Include="Views\Brands\ListBrand.cshtml" />
     <Content Include="Views\Providers\ListProvider.cshtml" />
     <Content Include="Views\Categories\ListCategories.cshtml" />
-    <Content Include="Views\SubCategories\ListSubCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

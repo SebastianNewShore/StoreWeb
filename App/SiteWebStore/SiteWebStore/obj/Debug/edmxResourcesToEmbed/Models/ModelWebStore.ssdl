@@ -187,16 +187,6 @@
     <Property Name="Description" Type="varchar" MaxLength="200" />
     <Property Name="State" Type="tinyint" Nullable="false" />
   </EntityType>
-  <EntityType Name="tbSubCategories">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="State" Type="tinyint" Nullable="false" />
-    <Property Name="Description" Type="varchar" MaxLength="200" />
-    <Property Name="IdCategory" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="tbSubCategoryProducts">
     <Key>
       <PropertyRef Name="Id" />
@@ -409,18 +399,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tbSubCategories_tbCategories">
-    <End Role="tbCategories" Type="Self.tbCategories" Multiplicity="1" />
-    <End Role="tbSubCategories" Type="Self.tbSubCategories" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCategories">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="tbSubCategories">
-        <PropertyRef Name="IdCategory" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_tbSubCategoryProducts_tbProducts">
     <End Role="tbProducts" Type="Self.tbProducts" Multiplicity="1" />
     <End Role="tbSubCategoryProducts" Type="Self.tbSubCategoryProducts" Multiplicity="*" />
@@ -434,10 +412,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tbSubCategoryProducts_tbSubCategories">
-    <End Role="tbSubCategories" Type="Self.tbSubCategories" Multiplicity="1" />
+    <End Role="tbCategories" Type="Self.tbCategories" Multiplicity="1" />
     <End Role="tbSubCategoryProducts" Type="Self.tbSubCategoryProducts" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tbSubCategories">
+      <Principal Role="tbCategories">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="tbSubCategoryProducts">
@@ -463,7 +441,6 @@
     <EntitySet Name="tbRegions" EntityType="Self.tbRegions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbShippingCompanies" EntityType="Self.tbShippingCompanies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbStateOrders" EntityType="Self.tbStateOrders" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbSubCategories" EntityType="Self.tbSubCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbSubCategoryProducts" EntityType="Self.tbSubCategoryProducts" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_tbCities_tbRegions" Association="Self.FK_tbCities_tbRegions">
       <End Role="tbRegions" EntitySet="tbRegions" />
@@ -533,16 +510,12 @@
       <End Role="tbCountries" EntitySet="tbCountries" />
       <End Role="tbRegions" EntitySet="tbRegions" />
     </AssociationSet>
-    <AssociationSet Name="FK_tbSubCategories_tbCategories" Association="Self.FK_tbSubCategories_tbCategories">
-      <End Role="tbCategories" EntitySet="tbCategories" />
-      <End Role="tbSubCategories" EntitySet="tbSubCategories" />
-    </AssociationSet>
     <AssociationSet Name="FK_tbSubCategoryProducts_tbProducts" Association="Self.FK_tbSubCategoryProducts_tbProducts">
       <End Role="tbProducts" EntitySet="tbProducts" />
       <End Role="tbSubCategoryProducts" EntitySet="tbSubCategoryProducts" />
     </AssociationSet>
     <AssociationSet Name="FK_tbSubCategoryProducts_tbSubCategories" Association="Self.FK_tbSubCategoryProducts_tbSubCategories">
-      <End Role="tbSubCategories" EntitySet="tbSubCategories" />
+      <End Role="tbCategories" EntitySet="tbCategories" />
       <End Role="tbSubCategoryProducts" EntitySet="tbSubCategoryProducts" />
     </AssociationSet>
   </EntityContainer>

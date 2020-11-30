@@ -18,7 +18,7 @@ namespace SiteWebStore.Models
         public int IdProduct { get; set; }
         public int IdSubCategory { get; set; }
     
+        public virtual tbCategory tbCategory { get; set; }
         public virtual tbProduct tbProduct { get; set; }
-        public virtual tbSubCategory tbSubCategory { get; set; }
     }
 }

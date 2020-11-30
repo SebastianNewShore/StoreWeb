@@ -15,7 +15,7 @@ namespace SiteWebStore.Controllers
             using (dbStoreWebEntities db = new dbStoreWebEntities())
             {
                 var categories = new List<tbCategory>();
-
+              
                 try
                 {
                     categories = db.tbCategories.Where(x => x.State == 1).ToList();

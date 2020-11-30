@@ -1,4 +1,4 @@
-﻿@model SiteWebStore.Models.tbProduct
+﻿@model SiteWebStore.Models.ProductModel
 
 @{
     ViewBag.Title = "CreateProduct";
@@ -73,8 +73,6 @@
                     @Html.ValidationMessageFor(model => model.PublicPrice, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label col-md-4">Brand</label>
                 <div class="col-md-12">
@@ -82,12 +80,20 @@
                     @Html.ValidationMessageFor(model => model.IdBrand, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label col-md-4">Provider</label>
                 <div class="col-md-12">
                     @Html.Action("ListProvider", "Providers")
                     @Html.ValidationMessageFor(model => model.IdProvider, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-4">Product Detail</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.ProductDetail, new { htmlAttributes = new { @class = "form-control rounded-0" } })
+                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
@@ -99,40 +105,43 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-4">Product Detail</label>
+                <label class="control-label col-md-4">(select the categories)</label>
                 <div class="col-md-12">
-                    @Html.TextAreaFor(model => model.ProductDetail, new { htmlAttributes = new { @class = "form-control rounded-0" } })
-                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
+                    @Html.Action("ListCategories", "Categories")
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-4">Categories</label>
                 <div class="col-md-12">
-                   @Html.Action("ListCategories", "Categories")
-                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-4">Sub Categories</label>
-                <div id="prueba" class="col-md-12">
-                    <select class="form-control" id="IdCategory" name="IdCategory">
-                    </select>
-
-                    @Html.ValidationMessageFor(model => model.ProductDetail, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Categories, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })           
                 </div>
             </div>
         </div>
-        <center>
+        <br />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create Product" class="btn btn-success" />
                 </div>
             </div>
-        </center>
-        </div>
-        
+        </div>     
 }
-
 <div>
     @Html.ActionLink("Back to List", "ListProducts")
+    <script type="text/javascript">
+        function CategorySelected() {
+
+            let valuesSelectedOneClass = [];
+            let valueOption = "";
+
+            $("select").each(function (index) {
+                valueOption = $(this).val();
+                if ($(this).has('option:selected') && $(this).hasClass('Category')) {
+                    valuesSelectedOneClass.push(valueOption);
+                }
+            });
+
+            $("#Categories").val(valuesSelectedOneClass.join(","));
+    };
+    </script>
+
 </div>

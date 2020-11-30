@@ -10,7 +10,7 @@ namespace SiteWebStore.Models
         public string Description { get; set; }
         public string SKU { get; set; }
         public string Model { get; set; }
-        public string CountryOrigin { get; set; }
+        public string Origin { get; set; }
         public int weight { get; set; }
         public string categories { get; set; }
     }

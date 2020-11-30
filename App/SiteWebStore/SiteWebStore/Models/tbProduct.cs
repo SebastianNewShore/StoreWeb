@@ -21,7 +21,7 @@ namespace SiteWebStore.Models
             this.tbProductOrders = new HashSet<tbProductOrder>();
             this.tbSubCategoryProducts = new HashSet<tbSubCategoryProduct>();
         }
-    
+
         public int Id { get; set; }
         [Required]
         public string Code { get; set; }
@@ -43,7 +43,8 @@ namespace SiteWebStore.Models
         public string ProductDetail { get; set; }
         public int IdBrand { get; set; }
         public int IdProvider { get; set; }
-    
+
+
         public virtual tbBrand tbBrand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbProductOrder> tbProductOrders { get; set; }

@@ -61,7 +61,7 @@ namespace SiteWebStore.Controllers
                                            Description = p.Description,
                                            ProductDetail = p.ProductDetail,
                                            Name = (from pc in db.tbSubCategoryProducts
-                                                   join sc in db.tbSubCategories on pc.IdSubCategory equals sc.Id
+                                                   join sc in db.tbCategories on pc.IdSubCategory equals sc.Id
                                                    where pc.IdProduct == p.Id
                                                    select new
                                                    {
@@ -92,8 +92,9 @@ namespace SiteWebStore.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct(tbProduct p)
+        public ActionResult CreateProduct(ProductModel p)
         { 
+            
                 if (!ModelState.IsValid)
                     return View();
 
@@ -101,7 +102,32 @@ namespace SiteWebStore.Controllers
             {
                 try
                 {
-                    db.tbProducts.Add(p);
+                    var product = new tbProduct();
+
+                    product.Code = p.Code;
+                    product.Name = p.Name;
+                    product.State = p.State;
+                    product.Stock = p.Stock;
+                    product.Discount = p.Discount;
+                    product.InternalPrice = p.InternalPrice;
+                    product.PublicPrice = p.PublicPrice;
+                    product.IdBrand = p.IdBrand;
+                    product.IdProvider = p.IdProvider;
+                    product.Description = p.Description;
+                    product.ProductDetail = RestrictionConstants.JsonMockup;
+
+                    db.tbProducts.Add(product);
+
+                    foreach(var category in p.Categories.Split(','))
+                    {
+                        var categories = new tbSubCategoryProduct();
+
+                        categories.tbProduct = product;
+                        categories.IdSubCategory = int.Parse(category);
+
+                        db.tbSubCategoryProducts.Add(categories);
+                    }
+                    
                     db.SaveChanges();
 
                     return RedirectToAction("ListProducts");
