@@ -10,8 +10,20 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
+
     <div class="form-horizontal">
+        <br />
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="control-label">Database</label>
+                @Html.RadioButton("SaveMode", "Database", true)
+            </div>
+            <div class="col-md-2">
+                <label class="control-label">Memory</label>
+                @Html.RadioButton("SaveMode", "Memory")
+            </div>      
+        </div>
         <hr />
         <div class="col-md-6">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -35,8 +47,8 @@
                 <label class="control-label col-md-4">Product State</label>
                 <div class="col-md-12">
                     <select class="form-control" id="State" name="State">
-                        <option value="0">Inactivo</option>
                         <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
                     </select>
                     @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
                 </div>

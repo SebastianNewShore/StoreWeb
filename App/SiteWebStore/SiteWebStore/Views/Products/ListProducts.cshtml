@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SiteWebStore.Models.ProductModel>
+﻿@model IEnumerable<SiteWebStore.Models.tbProduct>
 
 @{
     ViewBag.Title = "Product Inventory";
@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DiscountProduct)
+            @Html.DisplayFor(modelItem => item.Discount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InternalPrice)
@@ -60,10 +60,10 @@
             @Html.DisplayFor(modelItem => item.PublicPrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Brand)
+            @Html.DisplayFor(modelItem => item.IdBrand)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Provider)
+            @Html.DisplayFor(modelItem => item.IdProvider)
         </td>
         <td>
             @Html.ActionLink("Product Details", "ProductDetails", new { id=item.Id })

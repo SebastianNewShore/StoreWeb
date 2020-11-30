@@ -11,29 +11,25 @@ namespace SiteWebStore.Controllers
 {
     public class ProductsController : Controller
     {
+        private static List<tbProduct> productMemory = new List<tbProduct>();
+        private static List<tbSubCategoryProduct> listCategories = new List<tbSubCategoryProduct>();
+
         public ActionResult ListProducts()
         {
             using (dbStoreWebEntities db = new dbStoreWebEntities())
             {
-                var products = new List<ProductModel>();
+                var products = new List<tbProduct>();
                 try
                 {
-                    products = (from p in db.tbProducts
-                                join b in db.tbBrands on p.IdBrand equals b.Id
-                                join v in db.tbProviders on p.IdProvider equals v.Id
+                    products = (from p in db.tbProducts 
                                 where p.State == 1
-                                select new ProductModel
-                                {
-                                    Id = p.Id,
-                                    Code = p.Code,
-                                    Name = p.Name,
-                                    Stock = p.Stock,
-                                    DiscountProduct = p.Discount + " %",
-                                    InternalPrice = p.InternalPrice,
-                                    PublicPrice = p.PublicPrice,
-                                    Brand = b.Name,
-                                    Provider = v.Name
-                                }).ToList();
+                                select p).ToList();
+
+                    foreach(var product in productMemory)
+                    {
+                       if(product.State.Equals(1) && products.Any(x => x.Code == product.Code))
+                        products.Add(product);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -93,52 +89,95 @@ namespace SiteWebStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateProduct(ProductModel p)
-        { 
-            
-                if (!ModelState.IsValid)
-                    return View();
+        {
+            if (!ModelState.IsValid)
+                return View();
 
+            try
+            {
+                using (dbStoreWebEntities db = new dbStoreWebEntities())
+                {
+                    if (db.tbProducts.Any(x => x.Code != p.Code) && productMemory.Any(x => x.Code == p.Code)) {
+                        var product = new tbProduct();
+
+                        product.Code = p.Code;
+                        product.Name = p.Name;
+                        product.State = p.State;
+                        product.Stock = p.Stock;
+                        product.Discount = p.Discount;
+                        product.InternalPrice = p.InternalPrice;
+                        product.PublicPrice = p.PublicPrice;
+                        product.IdBrand = p.IdBrand;
+                        product.IdProvider = p.IdProvider;
+                        product.Description = p.Description;
+                        product.ProductDetail = RestrictionConstants.JsonMockup;
+
+                        productMemory.Add(product);
+
+                        foreach (var category in p.Categories.Split(','))
+                        {
+                            listCategories.Add(new tbSubCategoryProduct {
+                                tbProduct = product,
+                                IdSubCategory = int.Parse(category)
+                            });
+                        }
+
+                        if (this.Request.Form[RestrictionConstants.SaveMode] == RestrictionConstants.DataBase)
+                            SaveDatabase(product, listCategories);
+                        //else if(this.Request.Form[RestrictionConstants.SaveMode] == RestrictionConstants.Memory)
+                        //    SaveMemory(product, listCategories);
+
+                        return RedirectToAction("ListProducts");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", RestrictionConstants.ProductExist);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", RestrictionConstants.Error + ex.Message);
+            }
+
+            return View();
+
+        }
+
+        private void SaveDatabase(tbProduct product, List<tbSubCategoryProduct> listCategories)
+        {
             using (dbStoreWebEntities db = new dbStoreWebEntities())
             {
                 try
                 {
-                    var product = new tbProduct();
-
-                    product.Code = p.Code;
-                    product.Name = p.Name;
-                    product.State = p.State;
-                    product.Stock = p.Stock;
-                    product.Discount = p.Discount;
-                    product.InternalPrice = p.InternalPrice;
-                    product.PublicPrice = p.PublicPrice;
-                    product.IdBrand = p.IdBrand;
-                    product.IdProvider = p.IdProvider;
-                    product.Description = p.Description;
-                    product.ProductDetail = RestrictionConstants.JsonMockup;
-
                     db.tbProducts.Add(product);
-
-                    foreach(var category in p.Categories.Split(','))
-                    {
-                        var categories = new tbSubCategoryProduct();
-
-                        categories.tbProduct = product;
-                        categories.IdSubCategory = int.Parse(category);
-
-                        db.tbSubCategoryProducts.Add(categories);
-                    }
-                    
+                    foreach(var category in listCategories){
+                        db.tbSubCategoryProducts.Add(category);
+                    }  
+                            
                     db.SaveChanges();
-
-                    return RedirectToAction("ListProducts");
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("",RestrictionConstants.Error + ex.Message);
+                    ModelState.AddModelError("", RestrictionConstants.Error + ex.Message);
                 }
-
-                return View();
             }
         }
+
+        //private void SaveMemory(tbProduct product, List<tbSubCategoryProduct> listCategories)
+        //{
+        //    productMemory.Add(new ProductModel {
+        //    Code = product.Code,
+        //    Name = product.Name,
+        //    State = product.State,
+        //    Stock = product.Stock,
+        //    Discount = product.Discount,
+        //    InternalPrice = product.InternalPrice,
+        //    PublicPrice = product.PublicPrice,
+        //    IdBrand = product.IdBrand,
+        //    IdProvider = product.IdProvider
+        //});
+
+        //}
     }
 }
